@@ -94,7 +94,6 @@ public class MainActivity extends Activity {
      *
      * @author piyush
      */
-
     class Player extends AsyncTask<String, Void, Boolean> {
         private ProgressDialog progress;
 

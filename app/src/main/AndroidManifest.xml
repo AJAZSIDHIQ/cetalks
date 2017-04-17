@@ -19,7 +19,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".web"></activity>
+        <activity android:name=".web" />
+        <activity android:name=".Cetalks"></activity>
     </application>
 
 </manifest>

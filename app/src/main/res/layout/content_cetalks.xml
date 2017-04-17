@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content_cetalks"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:showIn="@layout/activity_cetalks">
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/rbg1"
+        android:id="@+id/radiobg"
+        android:scaleType="centerCrop"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:id="@+id/l1">
+        <RelativeLayout
+            android:background="@color/black_overlay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="8">
+            <TextView
+                android:id="@+id/marque_scrolling_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:ellipsize="marquee"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:padding="16dp"
+                android:scrollHorizontally="true"
+                android:lines="1"
+                android:textColor="@color/white"
+                android:text="Welcome to College of Engineering, Trivandrum"
+                android:textSize="24sp" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="match_parent">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/play_pause_view"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:src="@drawable/cetalks"
+                android:scaleType="centerCrop"/>
+
+            <com.ohoussein.playpause.PlayPauseView
+                android:id="@+id/play_pause_view"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentBottom="true"
+                android:clickable="true"
+                android:layout_marginBottom="10dp"
+                android:foreground="?android:selectableItemBackground"
+                app:fill_color="#e1e1e1"
+                app:pause_bg="@color/black_overlay_dark"
+                app:play_bg="@color/black_overlay" />
+        </RelativeLayout>
+    </LinearLayout>
+</FrameLayout>
+
