@@ -14,12 +14,14 @@ import android.widget.TextView;
 
 import com.ohoussein.playpause.PlayPauseView;
 
+import org.w3c.dom.Text;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class Cetalks extends AppCompatActivity implements View.OnClickListener {
-    @BindView(R.id.play_pause_view)PlayPauseView view;
-    @BindView(R.id.marque_scrolling_text)TextView songName;
+public class Cetalks extends AppCompatActivity{
+    PlayPauseView view;
+    TextView songName;
     IntentFilter intentFilter;
     ProgressDialog progressDialog;
     @Override
@@ -31,9 +33,10 @@ public class Cetalks extends AppCompatActivity implements View.OnClickListener {
         intentFilter.addAction(Constants.ACTION.LOADED);
         intentFilter.addAction(Constants.ACTION.SONG_CHANGE);
         progressDialog=new ProgressDialog(Cetalks.this);
+        PlayPauseView view=(PlayPauseView)findViewById(R.id.play_pause_view);
+        songName=(TextView)findViewById(R.id.marque_scrolling_text);
 //        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
-        ButterKnife.bind(this);
         songName.setSelected(true);
         songName.setHorizontallyScrolling(true);
         if(RadioService.iSRunning)
@@ -55,12 +58,10 @@ public class Cetalks extends AppCompatActivity implements View.OnClickListener {
                     RadioService.iSRunning = false;
 
                 }
-
                 startService(service);
             }
         });
     }
-
     @Override
     protected void onDestroy() {
         unregisterReceiver(receiver);
@@ -94,13 +95,6 @@ public class Cetalks extends AppCompatActivity implements View.OnClickListener {
             }
         }
     };
-
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-        }
-    }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
