@@ -33,7 +33,7 @@ public class Cetalks extends AppCompatActivity{
         intentFilter.addAction(Constants.ACTION.LOADED);
         intentFilter.addAction(Constants.ACTION.SONG_CHANGE);
         progressDialog=new ProgressDialog(Cetalks.this);
-        PlayPauseView view=(PlayPauseView)findViewById(R.id.play_pause_view);
+        view=(PlayPauseView)findViewById(R.id.play_pause_view);
         songName=(TextView)findViewById(R.id.marque_scrolling_text);
 //        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);

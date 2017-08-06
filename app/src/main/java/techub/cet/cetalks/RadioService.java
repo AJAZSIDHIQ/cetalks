@@ -48,11 +48,6 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 
 
-
-/**
- * Created by kevin on 2/15/17.
- */
-
 public class RadioService extends Service {
     public static boolean iSRunning=false;
     private static final String LOG_TAG = "RadioService";
