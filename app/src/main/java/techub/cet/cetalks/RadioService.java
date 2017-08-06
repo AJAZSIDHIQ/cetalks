@@ -137,10 +137,11 @@ public class RadioService extends Service {
         return START_STICKY;
     }
     private void updateNotification(String songname){
+
         Intent notificationIntent = new Intent(this,Cetalks.class);
-//        notificationIntent.setAction(Constants.ACTION.MAIN_ACTION);
-//        notificationIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
-//                | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        notificationIntent.setAction(Constants.ACTION.MAIN_ACTION);
+        notificationIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
+                | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0,
                 notificationIntent, 0);
         Intent playIntent = new Intent(this, RadioService.class);
@@ -156,6 +157,7 @@ public class RadioService extends Service {
         Notification notification = new NotificationCompat.Builder(this)
                 .setContentTitle("Cetalks")
                 .setTicker("Cetalks")
+                .setColor(getResources().getColor(R.color.black_overlay_dark))
                 .setContentText(songname)
                 .setLargeIcon(Bitmap.createScaledBitmap(icon, 128, 128, false))
                 .setSmallIcon(R.drawable.button_pause)

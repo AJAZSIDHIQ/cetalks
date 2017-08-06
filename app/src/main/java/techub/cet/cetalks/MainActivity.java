@@ -41,13 +41,6 @@ public class MainActivity extends Activity {
 
     }
 
-   /* @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.activity_main, menu);
-        return true;
-    }*/
-
     final Context context= this;
 
     private  View.OnClickListener web =new View.OnClickListener(){
