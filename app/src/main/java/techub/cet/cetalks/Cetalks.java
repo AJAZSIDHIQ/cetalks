@@ -9,6 +9,8 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -28,6 +30,10 @@ public class Cetalks extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cetalks);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        // Sets the Toolbar to act as the ActionBar for this Activity window.
+        // Make sure the toolbar exists in the activity and is not null
+        setSupportActionBar(toolbar);
         intentFilter=new IntentFilter();
         intentFilter.addAction(Constants.ACTION.CHANGE_STATE);
         intentFilter.addAction(Constants.ACTION.LOADED);
@@ -99,6 +105,28 @@ public class Cetalks extends AppCompatActivity{
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        int id = item.getItemId();
+
+        if (id==R.id.about){
+            if(!NetworkUtil.isNetworkAvailable(Cetalks.this)){
+                Snackbar.make(findViewById(R.id.content_cetalks),"Network Unavailable",Snackbar.LENGTH_LONG).show();
+                return true;
+            }
+            Intent startWeb = new Intent(this,web.class);
+            startActivity(startWeb);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
 

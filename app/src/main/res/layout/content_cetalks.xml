@@ -6,8 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".Cetalks"
-    tools:showIn="@layout/activity_cetalks">
+    tools:context=".Cetalks">
+
+
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -19,6 +20,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:id="@+id/l1">
+
         <RelativeLayout
             android:background="@color/black_overlay"
             android:layout_width="match_parent"
@@ -55,12 +57,12 @@
 
             <com.ohoussein.playpause.PlayPauseView
                 android:id="@+id/play_pause_view"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:layout_centerHorizontal="true"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
                 android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="20dp"
                 android:clickable="true"
-                android:layout_marginBottom="10dp"
                 android:foreground="?android:selectableItemBackground"
                 app:fill_color="#e1e1e1"
                 app:pause_bg="@color/black_overlay_dark"

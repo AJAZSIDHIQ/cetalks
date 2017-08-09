@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.Toolbar
     android:id="@+id/toolbar"
-    style="@style/Toolbar"
-    app:contentInsetStart="0dp"
-    android:background="?attr/colorPrimary"
-    app:popupTheme="@style/AppTheme.PopupOverlay"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:textColor="@color/white"
-        android:id="@+id/title"
-        android:textSize="20sp" />
-</android.support.v7.widget.Toolbar>
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    android:layout_weight="0.02"
+    android:background="?attr/colorAccent"
+    android:minHeight="?attr/actionBarSize"
+    app:titleTextColor="@android:color/black"
+    app:title="ajaz sidhiq"
+    app:logo="@drawable/cetalks"
+    android:weightSum="1"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    </android.support.v7.widget.Toolbar>
