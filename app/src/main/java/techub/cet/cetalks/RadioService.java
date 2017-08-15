@@ -64,6 +64,16 @@ public class RadioService extends Service {
         Log.d("Service","started");
         super.onCreate();
         mp=new MediaPlayer();
+
+        mp.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mp) {
+                Intent intent=new Intent();
+                intent.setAction(Constants.ACTION.LOADED);
+                sendBroadcast(intent);
+                mp.start();
+            }
+        });
         statusThread=new Thread(new Runnable() {
             @Override
             public void run() {
@@ -78,6 +88,7 @@ public class RadioService extends Service {
                         Intent intent=new Intent();
                         intent.setAction(Constants.ACTION.SONG_CHANGE);
                         intent.putExtra("song",new JSONObject(json.get("current_track").toString()).get("title").toString());
+                        intent.putExtra("songimage",new JSONObject(json.get("current_track").toString()).get("artwork_url").toString());
                         sendBroadcast(intent);
                         TimeUnit.SECONDS.sleep(3);
                     } catch (InterruptedException e) {
@@ -90,15 +101,7 @@ public class RadioService extends Service {
                 }
             }
         });
-        mp.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-            @Override
-            public void onPrepared(MediaPlayer mp) {
-                Intent intent=new Intent();
-                intent.setAction(Constants.ACTION.LOADED);
-                sendBroadcast(intent);
-                mp.start();
-            }
-        });
+
     }
 
     @Override

@@ -6,4 +6,6 @@
     <color name="black_overlay">#66000000</color>
     <color name="white">#FDFDFE</color>
     <color name="black_overlay_dark">#af000000</color>
+    <color name="black">#FF000000</color>
+    <color name="whiteshade">#beb9b9</color>
 </resources>
