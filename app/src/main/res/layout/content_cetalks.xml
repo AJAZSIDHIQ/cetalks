@@ -141,43 +141,89 @@
 
 
         </RelativeLayout>
-        <TableLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:stretchColumns="0,1">
-
-            <TableRow>
-                <Button
-                    android:layout_height="10dp"
-                    android:layout_width="10dp"
+            android:orientation="horizontal"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp">
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+                <ImageButton
+                    android:layout_height="20dp"
+                    android:layout_width="20dp"
                     android:id="@+id/about"
-                    android:layout_gravity="center"
+                    android:layout_centerInParent="true"
                     android:background="@drawable/about" />
-
-                <Button
-                    android:layout_height="30dp"
-                    android:layout_width="30dp"
-                    android:id="@+id/button3"
-                    android:layout_gravity="center"
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+                <ImageButton
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:id="@+id/button5"
+                    android:layout_centerInParent="true"
                     android:background="@drawable/facebook"/>
-            </TableRow>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+                <ImageButton
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:id="@+id/share"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/share"/>
+            </RelativeLayout>
+        </LinearLayout>
 
-            <TableRow>
-                <Button
-                    android:layout_height="30dp"
-                    android:layout_width="30dp"
-                    android:id="@+id/button2"
-                    android:layout_gravity="center"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp">
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+                <ImageButton
+                    android:layout_height="20dp"
+                    android:layout_width="20dp"
+                    android:id="@+id/facebook"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/facebook" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+                <ImageButton
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:id="@+id/button3"
+                    android:layout_centerInParent="true"
                     android:background="@drawable/twitter"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+                <ImageButton
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:id="@+id/button"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/facebook"/>
+            </RelativeLayout>
+        </LinearLayout>
 
-                <Button
-                    android:layout_height="30dp"
-                    android:layout_width="30dp"
-                    android:id="@+id/button4"
-                    android:layout_gravity="center"
-                    android:background="@drawable/share" />
-            </TableRow>
-        </TableLayout>
+
 
     </LinearLayout>
 

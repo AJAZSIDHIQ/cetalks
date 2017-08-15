@@ -18,6 +18,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.webkit.WebView;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -38,7 +39,7 @@ public class Cetalks extends AppCompatActivity{
     CircularSeekBar volumeControl;
     AudioManager audioManager;
     ImageView songImage;
-    Button aboutview;
+    ImageButton aboutview;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,7 +55,7 @@ public class Cetalks extends AppCompatActivity{
 
         progressDialog=new ProgressDialog(Cetalks.this);
         view=(PlayPauseView)findViewById(R.id.play_pause_view);
-        aboutview=(Button)findViewById(R.id.about);
+        aboutview=(ImageButton)findViewById(R.id.about);
         songName=(TextView)findViewById(R.id.marque_scrolling_text);
         songImage=(ImageView)findViewById(R.id.songimage);
         volumeControl = (CircularSeekBar) findViewById(R.id.circularSeekBar);
