@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.media.AudioManager;
+import android.net.Uri;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -31,7 +32,7 @@ import org.w3c.dom.Text;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class Cetalks extends AppCompatActivity{
+public class Cetalks extends AppCompatActivity {
     PlayPauseView view;
     TextView songName;
     IntentFilter intentFilter;
@@ -39,7 +40,8 @@ public class Cetalks extends AppCompatActivity{
     CircularSeekBar volumeControl;
     AudioManager audioManager;
     ImageView songImage;
-    ImageButton aboutview;
+    ImageButton aboutview, shareButton,fbbutton,instabutton,twitterbutton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,16 +50,20 @@ public class Cetalks extends AppCompatActivity{
         // Sets the Toolbar to act as the ActionBar for this Activity window.
         // Make sure the toolbar exists in the activity and is not null
         setSupportActionBar(toolbar);
-        intentFilter=new IntentFilter();
+        intentFilter = new IntentFilter();
         intentFilter.addAction(Constants.ACTION.CHANGE_STATE);
         intentFilter.addAction(Constants.ACTION.LOADED);
         intentFilter.addAction(Constants.ACTION.SONG_CHANGE);
 
-        progressDialog=new ProgressDialog(Cetalks.this);
-        view=(PlayPauseView)findViewById(R.id.play_pause_view);
-        aboutview=(ImageButton)findViewById(R.id.about);
-        songName=(TextView)findViewById(R.id.marque_scrolling_text);
-        songImage=(ImageView)findViewById(R.id.songimage);
+        progressDialog = new ProgressDialog(Cetalks.this);
+        view = (PlayPauseView) findViewById(R.id.play_pause_view);
+        aboutview = (ImageButton) findViewById(R.id.about);
+        shareButton = (ImageButton) findViewById(R.id.share);
+        fbbutton=(ImageButton)findViewById(R.id.facebook) ;
+        instabutton=(ImageButton)findViewById(R.id.instagram) ;
+        twitterbutton=(ImageButton)findViewById(R.id.twitter);
+        songName = (TextView) findViewById(R.id.marque_scrolling_text);
+        songImage = (ImageView) findViewById(R.id.songimage);
         volumeControl = (CircularSeekBar) findViewById(R.id.circularSeekBar);
         audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 //        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -67,13 +73,13 @@ public class Cetalks extends AppCompatActivity{
         volumeControl.setProgress(audioManager.getStreamVolume(AudioManager.STREAM_MUSIC));
         songName.setSelected(true);
         songName.setHorizontallyScrolling(true);
-        if(RadioService.iSRunning)
+        if (RadioService.iSRunning)
             view.toggle();
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!NetworkUtil.isNetworkAvailable(Cetalks.this)){
-                    Snackbar.make(findViewById(R.id.content_cetalks),"Network Unavailable",Snackbar.LENGTH_LONG).show();
+                if (!NetworkUtil.isNetworkAvailable(Cetalks.this)) {
+                    Snackbar.make(findViewById(R.id.content_cetalks), "Network Unavailable", Snackbar.LENGTH_LONG).show();
                     return;
                 }
                 Intent service = new Intent(Cetalks.this, RadioService.class);
@@ -89,7 +95,6 @@ public class Cetalks extends AppCompatActivity{
                 startService(service);
             }
         });
-
 
 
         volumeControl.setOnSeekBarChangeListener(new OnCircularSeekBarChangeListener() {
@@ -112,17 +117,43 @@ public class Cetalks extends AppCompatActivity{
         aboutview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!NetworkUtil.isNetworkAvailable(Cetalks.this)){
-                    Snackbar.make(findViewById(R.id.content_cetalks),"Network Unavailable",Snackbar.LENGTH_LONG).show();
+                if (!NetworkUtil.isNetworkAvailable(Cetalks.this)) {
+                    Snackbar.make(findViewById(R.id.content_cetalks), "Network Unavailable", Snackbar.LENGTH_LONG).show();
                     return;
                 }
                 Intent service = new Intent(Cetalks.this, web.class);
                 startActivity(service);
             }
         });
+        shareButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                shareIt();
+            }
+        });
+        fbbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fbshare();
+            }
+        });
+        instabutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                instashare();
+            }
+        });
+        twitterbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                twittershare();
+            }
+        });
+
 
 
     }
+
     @Override
     protected void onDestroy() {
         unregisterReceiver(receiver);
@@ -136,27 +167,30 @@ public class Cetalks extends AppCompatActivity{
     protected void onPause() {
         super.onPause();
     }
+
     @Override
     public void onResume() {
         super.onResume();
         registerReceiver(receiver, intentFilter);
     }
-    private BroadcastReceiver receiver =new BroadcastReceiver() {
+
+    private BroadcastReceiver receiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
 
-            if(intent.getAction().equals(Constants.ACTION.LOADED))
-                if(progressDialog.isShowing())
+            if (intent.getAction().equals(Constants.ACTION.LOADED))
+                if (progressDialog.isShowing())
                     progressDialog.dismiss();
-            if(intent.getAction().equals(Constants.ACTION.CHANGE_STATE)){
+            if (intent.getAction().equals(Constants.ACTION.CHANGE_STATE)) {
                 view.toggle();
             }
-            if(intent.getAction().equals(Constants.ACTION.SONG_CHANGE)){
+            if (intent.getAction().equals(Constants.ACTION.SONG_CHANGE)) {
                 songName.setText(intent.getStringExtra("song"));
                 //Picasso.with(context).load(intent.getStringExtra("songimage")).into(songImage);
             }
         }
     };
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -169,20 +203,51 @@ public class Cetalks extends AppCompatActivity{
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
+
     @Override
-    public boolean onOptionsItemSelected(MenuItem item){
+    public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id==R.id.about){
-            if(!NetworkUtil.isNetworkAvailable(Cetalks.this)){
-                Snackbar.make(findViewById(R.id.content_cetalks),"Network Unavailable",Snackbar.LENGTH_LONG).show();
+        if (id == R.id.about) {
+            if (!NetworkUtil.isNetworkAvailable(Cetalks.this)) {
+                Snackbar.make(findViewById(R.id.content_cetalks), "Network Unavailable", Snackbar.LENGTH_LONG).show();
                 return true;
             }
-            Intent startWeb = new Intent(this,web.class);
+            Intent startWeb = new Intent(this, web.class);
             startActivity(startWeb);
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void shareIt() {
+//sharing implementation here
+        Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+        sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Turn On Tune IN ");
+        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, "Now our radio CETalks is live on streema.... You can  listen to our radio on cetalks.in");
+        startActivity(Intent.createChooser(sharingIntent, "Share via"));
+    }
+
+    private void fbshare() {
+
+
+        Uri uri = Uri.parse("https://www.facebook.com/CETalks"); // missing 'http://' will cause crashed
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        startActivity(intent);
+    }
+    private void instashare() {
+
+
+        Uri uri = Uri.parse("https://www.instagram.com/cetalks"); // missing 'http://' will cause crashed
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        startActivity(intent);
+    }
+    private void twittershare() {
+
+
+        Uri uri = Uri.parse("https://www.twitter.com/radio_cetalks"); // missing 'http://' will cause crashed
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        startActivity(intent);
     }
 
 

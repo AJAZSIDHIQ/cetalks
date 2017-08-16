@@ -8,7 +8,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="bottom"
-    app:umanoPanelHeight="68dp"
+    app:umanoPanelHeight="40dp"
     app:umanoShadowHeight="4dp"
     tools:context=".Cetalks">
 <FrameLayout
@@ -98,9 +98,6 @@
                 android:id="@+id/marque_scrolling_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_below="@+id/circularSeekBar"
                 android:ellipsize="marquee"
                 android:lines="2"
                 android:marqueeRepeatLimit="marquee_forever"
@@ -109,7 +106,10 @@
                 android:text="College of Engineering, Trivandrum"
                 android:textAlignment="center"
                 android:textColor="@color/white"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:layout_below="@+id/imageView2"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
         </RelativeLayout>
 
 </FrameLayout>
@@ -128,7 +128,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="68dp"
+            android:layout_height="40dp"
             android:orientation="horizontal">
 
             <ImageView
@@ -206,9 +206,9 @@
                 <ImageButton
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:id="@+id/button3"
+                    android:id="@+id/instagram"
                     android:layout_centerInParent="true"
-                    android:background="@drawable/twitter"/>
+                    android:background="@drawable/instagram"/>
             </RelativeLayout>
             <RelativeLayout
                 android:layout_width="wrap_content"
@@ -217,14 +217,11 @@
                 <ImageButton
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:id="@+id/button"
+                    android:id="@+id/twitter"
                     android:layout_centerInParent="true"
-                    android:background="@drawable/facebook"/>
+                    android:background="@drawable/twitter"/>
             </RelativeLayout>
         </LinearLayout>
-
-
-
     </LinearLayout>
 
 </com.sothree.slidinguppanel.SlidingUpPanelLayout>
